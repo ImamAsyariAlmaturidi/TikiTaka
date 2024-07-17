@@ -1,0 +1,32 @@
+{
+  "name": "tikitaka",
+  "version": "1.0.0",
+  "description": "tikitaka as a social media website",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ImamAsyariAlmaturidi/TikiTaka.git"
+  },
+  "author": "Imam A'syari Almaturidi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ImamAsyariAlmaturidi/TikiTaka/issues"
+  },
+  "homepage": "https://github.com/ImamAsyariAlmaturidi/TikiTaka#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "ejs": "^3.1.10",
+    "express": "^4.19.2",
+    "express-session": "^1.18.0",
+    "pg": "^8.12.0",
+    "sequelize": "^6.37.3"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.4",
+    "sequelize-cli": "^6.6.2"
+  }
+}
