@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Profile.belongsTo(models.User)
     }
   }
   Profile.init({
@@ -19,10 +20,15 @@ module.exports = (sequelize, DataTypes) => {
     photo: DataTypes.STRING,
     gender: DataTypes.STRING,
     address: DataTypes.TEXT,
-    age: DataTypes.INTEGER
+    birthOfDate: DataTypes.DATE,
+    UserId: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'Profile',
   });
+
+  Profile.beforeCreate(function (instance, options){
+    instance.photo = ''
+  })
   return Profile;
 };

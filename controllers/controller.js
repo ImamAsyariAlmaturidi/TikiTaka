@@ -1,4 +1,4 @@
-const { User } = require('../models/index')
+const { User, Profile} = require('../models/index')
 const bcrypt = require('bcryptjs')
 class Controller {
     static async landingPageRender(req, res) {
@@ -18,11 +18,17 @@ class Controller {
     }
 
     static async handlerUserRegister(req, res) {
-        const {username, email, password} = req.body
+        const {username, email, password, firstName, lastName, gender, address, birthOfDate } = req.body
+        console.log(birthOfDate)
         try {
-            await User.create({
+           const data = await User.create({
                 username, email, password
             })
+    
+            await Profile.create({
+                firstName, lastName, gender, address, birthOfDate, UserId: data.dataValues.id
+             })
+            
             res.redirect('/users/login')
         } catch (error) {
             console.log(error)

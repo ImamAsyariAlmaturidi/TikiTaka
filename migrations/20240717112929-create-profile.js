@@ -24,8 +24,8 @@ module.exports = {
       address: {
         type: Sequelize.TEXT
       },
-      age: {
-        type: Sequelize.INTEGER
+      birthOfDate: {
+        type: Sequelize.DATE
       },
       createdAt: {
         allowNull: false,
