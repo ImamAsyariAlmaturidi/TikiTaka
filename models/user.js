@@ -1,4 +1,5 @@
 'use strict';
+const Helper = require('../helpers/helper')
 const {
   Model
 } = require('sequelize');
@@ -22,5 +23,11 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'User',
   });
+
+  User.beforeCreate(async function(instance, options){
+    const newPassword = await Helper.hashingPassword(instance.password)
+    instance.password = newPassword
+    instance.Role = 'User'
+  })
   return User;
 };

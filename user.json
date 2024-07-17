@@ -1,0 +1,20 @@
+[
+    {
+        "username": "Imam",
+        "email": "imamasyari630@gmail.com",
+        "password": "imambae123",
+        "Role": "Admin"
+    },
+    {
+        "username": "Athif",
+        "email": "Athif@gmail.com",
+        "password": "Athif123",
+        "Role": "User"
+    },
+    {
+        "username": "Dicky",
+        "email": "Dicky@gmail.com",
+        "password": "Dicky123",
+        "Role": "User"
+    }
+]

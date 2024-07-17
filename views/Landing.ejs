@@ -7,17 +7,6 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
 </head>
 <body>
-    <header class="flex justify-evenly mx-10 mt-4 border-b-2 h-14">
-        <h1 class="text-black tracking-widest font-bold">TIKITAKA</h1>
-        <form method="get">
-            <div class="flex">
-                <input class="border rounded-l-lg py-2 px-2" type="text" placeholder="Search...">
-                <button class="bg-black hover:bg-gray-400 hover:text-black text-white font-bold py-2 px-4 rounded-r-lg ml-1">
-                    Search
-                </button>
-            </div>            
-        </form>
-        <h1>Profile</h1>
-    </header>
+    <%- include('_navbar.ejs') %>
 </body>
 </html>
