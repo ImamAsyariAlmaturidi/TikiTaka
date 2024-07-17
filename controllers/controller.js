@@ -1,14 +1,23 @@
-const { User, Profile} = require('../models/index')
+const { User, Profile, Post, ProfilePost} = require('../models/index')
 const bcrypt = require('bcryptjs')
 class Controller {
 
     static async landingPageRender(req, res) {
         try {
+            const content = await Profile.findAll({
+                include: {
+                    model: ProfilePost,
+                    include: {
+                        model: Post
+                    }
+                }
+            })
             const profile = await User.findOne({
                 include: Profile
             })
-            res.render('Landing.ejs', { profile })
+            res.render('Landing.ejs', { profile, content })
         } catch (error) {
+            console.log(error)
             res.send(error)
         }
     }
