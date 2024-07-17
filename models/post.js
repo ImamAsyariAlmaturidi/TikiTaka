@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Post.belongsTo(models.Tag)
     }
   }
   Post.init({
@@ -35,8 +36,10 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         isUrl: true
       }
-    }
-  }, {
+    },
+    ProfileId: DataTypes.INTEGER,
+    TagId: DataTypes.INTEGER
+    }, {
     sequelize,
     modelName: 'Post',
   });
