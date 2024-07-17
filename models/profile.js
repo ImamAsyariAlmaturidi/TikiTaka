@@ -21,7 +21,10 @@ module.exports = (sequelize, DataTypes) => {
     gender: DataTypes.STRING,
     address: DataTypes.TEXT,
     birthOfDate: DataTypes.DATE,
-    UserId: DataTypes.INTEGER
+    UserId: DataTypes.INTEGER,
+    Likes: DataTypes.INTEGER,
+    Following: DataTypes.INTEGER,
+    Followers: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'Profile',
@@ -29,6 +32,9 @@ module.exports = (sequelize, DataTypes) => {
 
   Profile.beforeCreate(function (instance, options){
     instance.photo = ''
+    instance.Followers = 0
+    instance.Following = 0
+    instance.Likes = 0
   })
   return Profile;
-};
+}

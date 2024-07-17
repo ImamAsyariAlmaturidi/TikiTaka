@@ -1,0 +1,29 @@
+ <div class="flex flex-1">
+        <div class="h-screen w-1/6 flex flex-col justify-around text-center">
+        <span class="flex"> 
+            <span>
+                <a href="/landing" class="font-bold text-lg tracking-widest hover:text-white hover:bg-black p-4 mx-4 "><button> <i class="fa-solid fa-house mr-2"></i>For You</button></a>
+            </span>
+        </span> 
+        <span class="flex"> 
+            <span>
+                <a href="/profile/<%= profile.dataValues.Profile.dataValues.id %>" class="font-bold text-lg tracking-widest hover:text-white hover:bg-black p-4 mx-4"><button>
+                    <i class="fa-solid fa-circle-user mr-2"></i> Profile</button></a>  
+                </span>
+        </span> 
+        <span class="flex"> 
+            <span>
+                <a href="/setting/<%= profile.dataValues.Profile.dataValues.id %>" class="font-bold text-lg tracking-widest hover:text-white hover:bg-black p-4 mx-4 mr-3"><button>
+                    <i class="fa-solid fa-bars-staggered mr-3"></i>
+                    Setting</button></a>
+            </span>
+        </span> 
+            
+        <span class="flex"> 
+            <span>
+                <a href="/logout/<%= profile.dataValues.Profile.dataValues.id %>" class="font-bold text-lg tracking-widest hover:text-white hover:bg-black p-4 mx-4 mr-2"><button>
+                    <i class="fa-solid fa-angles-left mr-3"></i> Logout</button></a>
+            </span>
+        </span> 
+     </div>
+        

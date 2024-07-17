@@ -10,8 +10,8 @@
         header {
             position: sticky;
             top: 0;
-            z-index: 10; 
-            background-color: white; 
+            z-index: 10;
+            background-color: white;
         }
     </style>
 </head>
@@ -26,16 +26,29 @@
                 </button>
             </div>            
         </form>
-        <h1 class="font-bold tracking-widest font-bold">Notification</h1>
+        <h1 class="font-bold tracking-widest">Notification</h1>
     </header>
 
     <%- include('_sidebar') %>
-
-        <div class="flex-1 relative">
-            <div class="flex items-center justify-center h-full overflow-y-auto">
-                <img src="https://via.placeholder.com/400" alt="Placeholder Image" class="max-w-full max-h-full">
+        <div class="flex mt-28 mx-10">
+            <img src="<%= profile.dataValues.Profile.dataValues.photo %>" alt="Profile Photo" class="rounded-full w-20 h-20 object-cover">
+            <div class="ml-4">
+                <h1 class="text-xl font-bold">
+                    <%= profile.dataValues.Profile.dataValues.firstName %> <%= profile.dataValues.Profile.dataValues.lastName %>
+                </h1>
+                <a href="/setting/<%= profile.dataValues.Profile.dataValues.id %>"><button class="text-bold bg-black text-white p-2 rounded-md">Edit Profile</button></a>
+            </div>
+            <div class="ml-4">
+                <h1>Following <%= profile.dataValues.Profile.dataValues.Following %></h1>
+            </div>
+            <div class="ml-4">
+                <h1>Followers <%= profile.dataValues.Profile.dataValues.Followers %></h1>
+            </div>
+            <div class="ml-4">
+                <h1>Likes <%= profile.dataValues.Profile.dataValues.Likes %></h1>
             </div>
         </div>
     </div>
+    
 </body>
 </html>

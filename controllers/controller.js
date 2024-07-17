@@ -1,9 +1,28 @@
 const { User, Profile} = require('../models/index')
 const bcrypt = require('bcryptjs')
 class Controller {
+
     static async landingPageRender(req, res) {
         try {
-            res.render('Landing.ejs')
+            const profile = await User.findOne({
+                include: Profile
+            })
+            res.render('Landing.ejs', { profile })
+        } catch (error) {
+            res.send(error)
+        }
+    }
+
+    static async renderProfileById(req, res) {
+        const { id } = req.params
+        try {
+            const profile = await User.findOne({
+                where: {
+                    id
+                },
+                include: Profile
+            })
+            res.render('Profile.ejs', { profile })
         } catch (error) {
             res.send(error)
         }
@@ -19,7 +38,6 @@ class Controller {
 
     static async handlerUserRegister(req, res) {
         const {username, email, password, firstName, lastName, gender, address, birthOfDate } = req.body
-        console.log(birthOfDate)
         try {
            const data = await User.create({
                 username, email, password
