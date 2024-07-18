@@ -22,6 +22,21 @@ class Controller {
         }
     }
 
+    static async renderSettingById(req,res){
+        const { id } = req.params
+        try {
+            const profile = await User.findOne({
+                where: {
+                    id
+                },
+                include: Profile
+            })
+            res.render('FormEditProfile.ejs', { profile })
+        } catch (error) {
+            res.send(error)
+        }
+    }
+
     static async renderProfileById(req, res) {
         const { id } = req.params
         try {

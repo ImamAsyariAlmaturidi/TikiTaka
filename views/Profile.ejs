@@ -24,7 +24,7 @@
                 <h1 class="text-xl font-bold">
                     <%= profile.dataValues.Profile.dataValues.firstName %> <%= profile.dataValues.Profile.dataValues.lastName %>
                 </h1>
-                <a href="/setting/<%= profile.dataValues.Profile.dataValues.id %>"><button class="text-bold bg-black text-white p-2 rounded-md"><i class="fa-solid fa-up-right-from-square"></i>Edit Profile</button></a>
+                <a href="/profile/setting/<%= profile.dataValues.Profile.dataValues.id %>"><button class="text-bold bg-black text-white p-2 rounded-md"><i class="fa-solid fa-up-right-from-square mr-3"></i>Edit Profile</button></a>
             </div>
             <div class="ml-4">
                 <h1>Following <%= profile.dataValues.Profile.dataValues.Following %></h1>
