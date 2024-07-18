@@ -19,21 +19,21 @@
     <%- include('_navbar') %>
     <%- include('_sidebar') %>
         <div class="flex mt-28 mx-10">
-            <img src="<%= profile.dataValues.Profile.dataValues.photo %>" alt="Profile Photo" class="rounded-full w-20 h-20 object-cover">
+            <img src="<%= profile.Profile.photo %>" alt="Profile Photo" class="rounded-full w-20 h-20 object-cover">
             <div class="ml-4">
                 <h1 class="text-xl font-bold">
-                    <%= profile.dataValues.Profile.dataValues.firstName %> <%= profile.dataValues.Profile.dataValues.lastName %>
+                    <%= profile.Profile.firstName %> <%= profile.Profile.lastName %>
                 </h1>
-                <a href="/profile/setting/<%= profile.dataValues.Profile.dataValues.id %>"><button class="text-bold bg-black text-white p-2 rounded-md"><i class="fa-solid fa-up-right-from-square mr-3"></i>Edit Profile</button></a>
+                <a href="/profile/setting/<%= profile.Profile.id %>"><button class="text-bold bg-black text-white p-2 rounded-md"><i class="fa-solid fa-up-right-from-square mr-3"></i>Edit Profile</button></a>
             </div>
             <div class="ml-4">
-                <h1>Following <%= profile.dataValues.Profile.dataValues.Following %></h1>
+                <h1>Following <%= profile.Profile.Following %></h1>
             </div>
             <div class="ml-4">
-                <h1>Followers <%= profile.dataValues.Profile.dataValues.Followers %></h1>
+                <h1>Followers <%= profile.Profile.Followers %></h1>
             </div>
             <div class="ml-4">
-                <h1>Likes <%= profile.dataValues.Profile.dataValues.Likes %></h1>
+                <h1>Likes <%= profile.Profile.Likes %></h1>
             </div>
         </div>
     </div>

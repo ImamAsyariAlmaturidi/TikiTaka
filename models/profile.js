@@ -15,6 +15,10 @@ module.exports = (sequelize, DataTypes) => {
       Profile.hasMany(models.ProfilePost)
     }
 
+    get birthDayIso(){
+      return this.birthOfDate.toISOString().split('T')[0]
+    }
+
    static getBirthDayISO(birth) {
     return birth.toISOString().split('T')[0];
    }

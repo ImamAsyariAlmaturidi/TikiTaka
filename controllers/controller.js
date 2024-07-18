@@ -31,8 +31,22 @@ class Controller {
                 },
                 include: Profile
             })
-            
             res.render('FormEditProfile.ejs', { profile })
+        } catch (error) {
+            res.send(error)
+        }
+    }
+
+    static async renderSettingPrivacyById(req, res){
+        const { id } = req.params
+        try {
+            const profile = await User.findOne({
+                where: {
+                    id
+                },
+                include: Profile
+            })
+            res.render('FormEditUser.ejs', { profile })
         } catch (error) {
             res.send(error)
         }

@@ -12,14 +12,18 @@
     <%- include('_sidebar') %>
 
     <div class="grid place-items-center bg-white m-10 rounded-3xl shadow-lg shadow-white w-1/2 mx-auto p-8">
-        <form action="/update-profile" method="POST" class="text-center">
+        <img src="<%= profile.Profile.photo %>" alt="Profile Photo" class="rounded-full w-20 h-20 object-cover">
+        <form action="/profile/<%= profile.Profile.photo %>/update" method="POST" class="text-center">
+            <div class="my-12 mx-10 flex">
+                <input type="file" name="profilePhoto" title="Choose a video please">
+            </div>
             <div class="mb-4">
                 <label for="firstName" class="block text-sm font-medium text-gray-700">First Name</label>
-                <input type="text" id="firstName" name="firstName" class="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent" required value="<%= profile.dataValues.Profile.dataValues.firstName %>">
+                <input type="text" id="firstName" name="firstName" class="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent" required value="<%= profile.Profile.firstName %>">
             </div>
             <div class="mb-4">
                 <label for="lastName" class="block text-sm font-medium text-gray-700">Last Name</label>
-                <input type="text" id="lastName" name="lastName" class="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent" required value="<%= profile.dataValues.Profile.dataValues.lastName %>">
+                <input type="text" id="lastName" name="lastName" class="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent" required value="<%= profile.Profile.lastName %>">
             </div>
             <div class="mb-4">
                 <label for="gender" class="block text-sm font-medium text-gray-700">Gender</label>
@@ -30,11 +34,11 @@
             </div>
             <div class="mb-4">
                 <label for="address" class="block text-sm font-medium text-gray-700">Address</label>
-                <textarea id="address" name="address" rows="3" class="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent" required><%= profile.dataValues.Profile.dataValues.address %></textarea>
+                <textarea id="address" name="address" rows="3" class="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent" required><%= profile.Profile.address %></textarea>
             </div>
             <div class="mb-4">
                 <label for="birthOfDate" class="block text-sm font-medium text-gray-700">Date of Birth</label>
-                <input type="date" id="birthOfDate" name="birthOfDate" class="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent" required value="<%= profile.birth %>">
+                <input type="date" id="birthOfDate" name="birthOfDate" class="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent" required value="<%= profile.Profile.birthDayIso %>">
             </div>
             <div class="mt-4">
                 <button type="submit" class="bg-yellow-500 text-white py-2 px-4 rounded-md hover:bg-yellow-600 focus:outline-none focus:bg-yellow-600">Save Changes</button>
@@ -42,10 +46,9 @@
         </form>
     </div>
     
-
     <div class="grid grid-cols-1 gap 1 bg-white m-10 rounded-3xl shadow-lg shadow shadow-white w-2/6 text-center items-center">
-            <div class="text-black font-bold hover:bg-yellow-100 p-8 text-xl">Manage Your Account</div>
-            <div class="text-black font-bold hover:bg-yellow-100 p-8 text-xl">Privacy</div>
+            <a href="/profile/setting/<%= profile.Profile.id %>" class="text-black font-bold hover:bg-yellow-100 p-8 text-xl">Manage Your Account</a>
+            <a href="/profile/privacy/<%= profile.Profile.id %>" class="text-black font-bold hover:bg-yellow-100 p-8 text-xl">Privacy</a>
     </div>
 </body>
 </html>
