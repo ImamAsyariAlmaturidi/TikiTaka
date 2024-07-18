@@ -1,15 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8 text-xl">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Setting</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
 </head>
-<body>
+<body class="bg-yellow-100">
     <%- include('_navbar') %>
     <%- include('_sidebar') %>
-    <div>hahaha</div>
+
+    <div class="grid grid-cols-2 gap 4  bg-white m-10 rounded-3xl shadow-lg shadow shadow-white w-1/2">
+        
+    </div>
+    <div class="grid grid-cols-1 gap 1 bg-white m-10 rounded-3xl shadow-lg shadow shadow-white w-2/6 text-center items-center">
+            <div class="text-black font-bold hover:bg-yellow-100 p-8 text-xl">Manage Your Account</div>
+            <div class="text-black font-bold hover:bg-yellow-100 p-8 text-xl">Privacy</div>
+    </div>
 </body>
 </html>
