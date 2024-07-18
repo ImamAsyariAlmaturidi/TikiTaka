@@ -18,10 +18,5 @@
         "name": "haha",
         "PostId": 4,
         "ProfileId": 3
-    },
-    {
-        "name": "haha",
-        "PostId": 5,
-        "ProfileId": 3
-    } 
+    }
 ]
