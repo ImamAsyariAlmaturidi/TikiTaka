@@ -1,5 +1,7 @@
 const { User, Profile, Post, ProfilePost} = require('../models/index')
 const bcrypt = require('bcryptjs')
+const cloudinary = require('../utils/cloudinary')
+const streamifier = require('streamifier')
 class Controller {
 
     static async landingPageRender(req, res) {
@@ -46,17 +48,53 @@ class Controller {
     }
 
     static async handlerSettingById(req, res) {
-        const { id } = req.params
+        const { id } = req.params;
+        const { firstName, lastName, gender, address, birthOfDate } = req.body;
+        let imgUrl = ''
         try {
             
+            // Cari profil berdasarkan ID
+            const profile = await Profile.findByPk(id);
+    
+            // Jika ada file yang diunggah
+            if (req.file) {
+                // Fungsi untuk mengunggah file dari buffer ke Cloudinary
+                const uploadStream = (buffer) => {
+                    return new Promise((resolve, reject) => {
+                        const stream = cloudinary.uploader.upload_stream((error, result) => {
+                            if (error) {
+                                reject(error);
+                            } else {
+                                resolve(result.secure_url);
+                            }
+                        });
+                        streamifier.createReadStream(buffer).pipe(stream);
+                    });
+                };
+    
+                // Mengunggah file menggunakan fungsi uploadStream
+                imgUrl = await uploadStream(req.file.buffer);
+                profile.imageURL = imgUrl;
+            }
+    
+            await profile.update({
+                firstName,
+                lastName,
+                gender,
+                address,
+                birthOfDate,
+                photo: imgUrl
+            });
+
+            res.redirect(`/profile/setting/${id}`);
         } catch (error) {
-            res.send(error)
+            console.error(error);
+            res.status(500).send('Terjadi kesalahan saat menyimpan profil');
         }
     }
 
     static async renderSettingPrivacyById(req, res){
         const msg = req.query?.msg
-        // console.log(msg)
         const { id } = req.params
         try {
             const profile = await User.findOne({
@@ -74,6 +112,7 @@ class Controller {
     static async handlerSettingPrivacyById(req, res) {
         const { id } = req.params;
         const { username, email, password } = req.body;
+        // console.log(username, email, password)
         try {
             const user = await User.findByPk(id); 
     
@@ -93,8 +132,10 @@ class Controller {
                 const msg =  error.errors.map(el => {
                     return el.message
                 })
+                console.log(error)
                 res.redirect(`/profile/privacy/${id}?msg=${msg}`)
             } else {
+                console.log(error)
                 res.send(error)
             }
         }

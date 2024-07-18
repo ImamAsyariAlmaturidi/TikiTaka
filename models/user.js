@@ -29,12 +29,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     password: {
       allowNull: false,
-      type: DataTypes.STRING,
-      validate: {
-        len: [8, 20],
-        notNull: true,
-        notEmpty: true
-      }
+      type: DataTypes.STRING
     },
     Role: {
       type: DataTypes.STRING,
@@ -52,7 +47,7 @@ module.exports = (sequelize, DataTypes) => {
     instance.password = newPassword
     instance.Role = 'User'
   })
-  
+
   User.beforeCreate(async function(instance, options){
     const newPassword = await Helper.hashingPassword(instance.password)
     instance.password = newPassword

@@ -13,9 +13,9 @@
 
     <div class="grid place-items-center bg-white m-10 rounded-3xl shadow-lg shadow-white w-1/2 mx-auto p-8">
         <img src="<%= profile.Profile.photo %>" alt="Profile Photo" class="rounded-full w-20 h-20 object-cover">
-        <form action="profile/setting/<%= profile.Profile.id %>/update method="POST" class="text-center">
+        <form action="/profile/setting/<%= profile.Profile.id %>/update " method="POST" class="text-center" enctype="multipart/form-data">
             <div class="my-12 mx-10 flex">
-                <input type="file" name="profilePhoto" title="Choose a video please">
+                <input type="file" name="gambar" title="Choose a video please" >
             </div>
             <div class="mb-4">
                 <label for="firstName" class="block text-sm font-medium text-gray-700">First Name</label>
