@@ -7,15 +7,25 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
 </head>
-<body class="bg-yellow-100">
-    <%- include('_navbar') %>
+<body class="bg-gray-300">
+    <header class="flex justify-evenly mx-10 mt-4 border-b-2 h-14 items-center w-full">
+        <h1 class="text-black tracking-widest font-bold text-1xl">TIKITAKA</h1>
+        <form method="get">
+            <div class="flex">
+                <input class="border rounded-l-lg py-2 px-2" type="text" placeholder="Search...">
+                <button class="bg-black hover:bg-gray-400 hover:text-black text-white font-bold py-2 px-4 rounded-r-lg ml-1">
+                    Search
+                </button>
+            </div>            
+        </form>
+    </header>
     <%- include('_sidebar') %>
 
-    <div class="grid place-items-center bg-white m-10 rounded-3xl shadow-lg shadow-white w-1/2 mx-auto p-8">
+    <div class="grid place-items-center bg-white m-10 rounded-3xl shadow-xl shadow-black w-1/2 mx-auto p-8">
         <img src="<%= profile.Profile.photo %>" alt="Profile Photo" class="rounded-full w-20 h-20 object-cover">
         <form action="/profile/setting/<%= profile.Profile.id %>/update " method="POST" class="text-center" enctype="multipart/form-data">
             <div class="my-12 mx-10 flex items-center">
-                <label for="gambar" class="cursor-pointer bg-gray-200 hover:bg-gray-300 px-4 py-2 rounded-lg shadow-md">
+                <label for="gambar" class="cursor-pointer bg-gray-200 hover:bg-gray-300 px-4 py-2 rounded-xl shadow-md">
                     Choose an image
                 </label>
                 <input id="gambar" type="file" name="gambar" accept="image/*" class="hidden">
@@ -50,8 +60,10 @@
     </div>
     
     <div class="grid grid-cols-1 gap 1 bg-white m-10 rounded-3xl shadow-lg shadow shadow-white w-2/6 text-center items-center">
-            <a href="/profile/setting/<%= profile.Profile.id %>" class="text-black font-bold hover:bg-yellow-100 p-8 text-xl">Manage Your Account</a>
-            <a href="/profile/privacy/<%= profile.Profile.id %>" class="text-black font-bold hover:bg-yellow-100 p-8 text-xl">Privacy</a>
+            <a href="/profile/setting/<%= profile.Profile.id %>" class="text-black border-b-2 font-bold hover:bg-yellow-100 p-8 text-xl">Manage Your Account</a>
+            <a href="/profile/privacy/<%= profile.Profile.id %>" class="text-black border-b-2 font-bold hover:bg-yellow-100 p-8 text-xl">Privacy</a>
+            <a href="/logout/<%= profile.Profile.id %>" class="font-bold text-lg  border-b-2 tracking-widest hover:bg-yellow-100 p-8 text-xl"><button>Logout</button></a>
+            
     </div>
 </body>
 </html>

@@ -15,7 +15,7 @@
         }
     </style>
 </head>
-<body>
+<body class="bg-gray-300">
     <%- include('_navbar') %>
     <%- include('_sidebar') %>
         <div class="flex mt-28 mx-10">
@@ -26,21 +26,21 @@
                 </h1>
                 <a href="/profile/setting/<%= profile.Profile.id %>"><button class="text-bold bg-black text-white p-2 rounded-md mt-3"><i class="fa-solid fa-up-right-from-square mr-3"></i>Edit Profile</button></a>
                 <div class="flex justify-center mt-10 items-center">
-                    <div class="p-6 rounded-lg shadow-lg w-full bg-yellow-100">
+                    <div class="p-6 rounded-lg shadow-lg w-full bg-white ">
                         <h2 class="text-2xl font-bold mb-4 text-center">Upload Video</h2>
-                        <form action="/profile/add/post/:id" method="post" enctype="multipart/form-data">
+                        <form action="/profile/add/post/<%= profile.Profile.id %>" method="post" enctype="multipart/form-data" >
                             <label class="w-full flex items-center justify-center px-4 py-6 bg-gray-100 text-gray-600 rounded-lg cursor-pointer border-2 border-dashed border-gray-400 hover:bg-gray-200 hover:border-gray-600">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" viewBox="0 0 20 20" fill="currentColor">
                                     <path fill-rule="evenodd" d="M3 3a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-2v6a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-6H3a2 2 0 0 1-2-2V3zm4 2v6h2V5H7zm2 0v2h2V5h-2zm-4 8v4h10v-4H3z" clip-rule="evenodd" />
                                 </svg>
                                 <span class="mt-2 text-base leading-normal">Choose a video file</span>
-                                <input type="file" name="videoFile" class="hidden" accept="video/*">
+                                <input type="file" name="gambar" class="hidden" accept="video/*">
                             </label>
                             <div class=" block flex flex-col w-96 gap-2">
                                 <label>Choose A Tag</label>
                                 <select name="tag" id="">
                                         <% tag.forEach(el => { %>
-                                        <option value="<%= el.name %>"><%= el.name %></option>
+                                        <option value="<%= el.id %>"><%= el.name %></option>
                                         <% }) %>
                                 </select>
                                 <label>Title Content</label>
@@ -48,8 +48,6 @@
                                 <label for="">Description</label>
                                 <input type="text" name="content">
                             </div>
-                           
-                            <label for="">Content Description</label>
                             <button type="submit" class="block w-full mt-4 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:bg-blue-600">Upload Video</button>
                         </form>
                     </div>

@@ -15,15 +15,24 @@
         }
     </style>
 </head>
-<body>
+<body class="bg-gray-300">
     <%- include('_navbar') %>
     <%- include('_sidebar') %>
 
-        <div class="flex-1 relative">
-            <div class="flex items-center justify-center h-full overflow-y-auto">
-                <img src="https://via.placeholder.com/400" alt="Placeholder Image" class="max-w-full max-h-full">
-            </div>
+    <div class=" relative">
+        <div class="items-center justify-center h-full overflow-y-auto">
+            <% content.forEach(el => { %>
+                <div class="mb-4">
+                    <video width="320" height="240" controls class="max-w-full max-h-full">
+                        <source src="<%= el.imgUrl %>" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            <% }) %>
         </div>
+    </div>
+    
+    
     </div>
 </body>
 </html>

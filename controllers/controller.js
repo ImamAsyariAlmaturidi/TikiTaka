@@ -7,19 +7,14 @@ class Controller {
     static async landingPageRender(req, res) {
         const { id } = req.params
         try {
-            const content = await Profile.findOne({
-                where: {
-                    id
-                },
+            const content = await Post.findAll({
                 include: {
                     model: ProfilePost,
                     include: {
-                        model: Post
+                        model: Profile
                     }
                 }
             })
-
-           
 
             const profile = await User.findOne({
                 where: {
@@ -53,7 +48,6 @@ class Controller {
         const { firstName, lastName, gender, address, birthOfDate } = req.body;
         try {
             let imgUrl = ''
-        
             const profile = await Profile.findByPk(id);
     
             if (req.file) {
@@ -107,7 +101,6 @@ class Controller {
     static async handlerSettingPrivacyById(req, res) {
         const { id } = req.params;
         const { username, email, password } = req.body;
-        // console.log(username, email, password)
         try {
             const user = await User.findByPk(id); 
     
@@ -178,7 +171,6 @@ class Controller {
             
             res.redirect('/users/login')
         } catch (error) {
-            // console.log(error)
             res.send(error)
         }
     }
@@ -210,8 +202,6 @@ class Controller {
                 include: Profile
             })
 
-            // console.log(profile)
-
             if(!pwd){
                     const msg = 'Username or Password incorect'
                     res.redirect(`/users/login?msg=${msg}`)
@@ -225,23 +215,54 @@ class Controller {
             res.send(error)
         }
     }
-
-    static async handlerAddPost(req, res){
-        const { id } = req.params
-        const {title, content, ProfileId, tag} = req.body
+    
+    static async handlerAddPost(req, res) {
+        const { id } = req.params;
+        const { title, content, tag } = req.body;
+    
         try {
-            const tag = await Tag.create({
-                tag
+            let videoUrl = '';
+
+            if (req.file) {
+                const uploadVideo = (buffer) => {
+                    return new Promise((resolve, reject) => {
+                        const stream = cloudinary.uploader.upload_stream(
+                            { resource_type: "video" }, 
+                            (error, result) => {
+                                if (error) {
+                                    reject(error);
+                                } else {
+                                    resolve(result.secure_url);
+                                }
+                            }
+                        );
+                        streamifier.createReadStream(buffer).pipe(stream);
+                    });
+                };
+    
+                videoUrl = await uploadVideo(req.file.buffer);
+            }
+
+           const dataPost = await Post.create({
+                title,
+                content,
+                ProfileId: id, 
+                TagId: tag, 
+                imgUrl: videoUrl
+            });
+
+            await ProfilePost.create({
+                name : dataPost.title,
+                PostId: dataPost.id,
+                ProfileId: dataPost.ProfileId
             })
-            console.log(tag)
-            // await Post.create({
-            //     title, content, id, TagId
-            // })
-            res.send(tag)
+
+            res.redirect(`/landing/${id}`);
         } catch (error) {
             res.send(error)
         }
     }
+    
 }
 
 module.exports = Controller
