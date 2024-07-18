@@ -24,17 +24,33 @@
                 <h1 class="text-xl font-bold">
                     <%= profile.Profile.firstName %> <%= profile.Profile.lastName %>
                 </h1>
-                <a href="/profile/setting/<%= profile.Profile.id %>"><button class="text-bold bg-black text-white p-2 rounded-md"><i class="fa-solid fa-up-right-from-square mr-3"></i>Edit Profile</button></a>
+                <a href="/profile/setting/<%= profile.Profile.id %>"><button class="text-bold bg-black text-white p-2 rounded-md mt-3"><i class="fa-solid fa-up-right-from-square mr-3"></i>Edit Profile</button></a>
+                <div class="flex justify-center mt-28 items-center">
+                    <div class="p-6 rounded-lg shadow-lg w-96">
+                        <h2 class="text-2xl font-bold mb-4 text-center">Upload Video</h2>
+                        <form action="/profile/add/post/:id" method="post" enctype="multipart/form-data">
+                            <label class="w-full flex items-center justify-center px-4 py-6 bg-gray-100 text-gray-600 rounded-lg cursor-pointer border-2 border-dashed border-gray-400 hover:bg-gray-200 hover:border-gray-600">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M3 3a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-2v6a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-6H3a2 2 0 0 1-2-2V3zm4 2v6h2V5H7zm2 0v2h2V5h-2zm-4 8v4h10v-4H3z" clip-rule="evenodd" />
+                                </svg>
+                                <span class="mt-2 text-base leading-normal">Choose a video file</span>
+                                <input type="file" name="videoFile" class="hidden" accept="video/*">
+                            </label>
+                            <button type="submit" class="block w-full mt-4 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:bg-blue-600">Upload Video</button>
+                        </form>
+                    </div>
+                </div>
+                
             </div>
-            <div class="ml-4">
+            <span class="ml-4 h-10">
                 <h1>Following <%= profile.Profile.Following %></h1>
-            </div>
-            <div class="ml-4">
+            </span>
+            <span class="ml-4 h-10">
                 <h1>Followers <%= profile.Profile.Followers %></h1>
-            </div>
-            <div class="ml-4">
+            </span>
+            <span class="ml-4 h-10">
                 <h1>Likes <%= profile.Profile.Likes %></h1>
-            </div>
+            </span>
         </div>
     </div>
     

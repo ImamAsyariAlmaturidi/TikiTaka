@@ -14,9 +14,12 @@
     <div class="grid place-items-center bg-white m-10 rounded-3xl shadow-lg shadow-white w-1/2 mx-auto p-8">
         <img src="<%= profile.Profile.photo %>" alt="Profile Photo" class="rounded-full w-20 h-20 object-cover">
         <form action="/profile/setting/<%= profile.Profile.id %>/update " method="POST" class="text-center" enctype="multipart/form-data">
-            <div class="my-12 mx-10 flex">
-                <input type="file" name="gambar" title="Choose a video please" >
-            </div>
+            <div class="my-12 mx-10 flex items-center">
+                <label for="gambar" class="cursor-pointer bg-gray-200 hover:bg-gray-300 px-4 py-2 rounded-lg shadow-md">
+                    Choose an image
+                </label>
+                <input id="gambar" type="file" name="gambar" accept="image/*" class="hidden">
+            </div>            
             <div class="mb-4">
                 <label for="firstName" class="block text-sm font-medium text-gray-700">First Name</label>
                 <input type="text" id="firstName" name="firstName" class="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent" required value="<%= profile.Profile.firstName %>">
