@@ -4,6 +4,8 @@ const router = express.Router()
 
 router.get('/:id', Controller.renderProfileById)
 router.get('/setting/:id', Controller.renderSettingById)
+router.post('/privacy/:id/update', Controller.handlerSettingPrivacyById)
+router.post('/setting/:id/update', Controller.handlerSettingById)
 router.get('/privacy/:id', Controller.renderSettingPrivacyById)
 
 

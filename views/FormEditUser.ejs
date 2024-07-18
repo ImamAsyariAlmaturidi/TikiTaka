@@ -12,7 +12,7 @@
     <%- include('_sidebar') %>
 
     <div class="grid place-items-center bg-white m-10 rounded-3xl shadow-lg shadow-white w-1/2 mx-auto p-8">
-        <form action="/profile/<%= profile.Profile.photo %>/privacy/update" method="POST" class="text-center">
+        <form action="/profile/privacy/<%= profile.id %>/update" method="POST" class="text-center">
             <div class="mb-4">
                 <label for="firstName" class="block text-sm font-medium text-gray-700">Username</label>
                 <input type="text" id="firstName" name="username" class="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent" required value="<%= profile.username %>">

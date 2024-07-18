@@ -47,6 +47,12 @@ module.exports = (sequelize, DataTypes) => {
     modelName: 'User',
   });
 
+  User.beforeUpdate(async function(instance, options){
+    const newPassword = await Helper.hashingPassword(instance.password)
+    instance.password = newPassword
+    instance.Role = 'User'
+  })
+  
   User.beforeCreate(async function(instance, options){
     const newPassword = await Helper.hashingPassword(instance.password)
     instance.password = newPassword
