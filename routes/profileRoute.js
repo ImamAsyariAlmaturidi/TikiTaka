@@ -9,6 +9,7 @@ router.get('/setting/:id', Controller.renderSettingById)
 router.post('/privacy/:id/update', Controller.handlerSettingPrivacyById)
 router.post('/setting/:id/update', uploadMiddleware, Controller.handlerSettingById)
 router.get('/privacy/:id', Controller.renderSettingPrivacyById)
+router.post('/profile/add/post/:id', Controller.handlerAddPost)
 
 
 module.exports = router

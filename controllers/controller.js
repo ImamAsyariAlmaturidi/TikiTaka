@@ -1,4 +1,4 @@
-const { User, Profile, Post, ProfilePost} = require('../models/index')
+const { User, Profile, Post, ProfilePost, Tag} = require('../models/index')
 const bcrypt = require('bcryptjs')
 const cloudinary = require('../utils/cloudinary')
 const streamifier = require('streamifier')
@@ -6,7 +6,6 @@ class Controller {
 
     static async landingPageRender(req, res) {
         const { id } = req.params
-        // console.log(id)
         try {
             const content = await Profile.findOne({
                 where: {
@@ -19,6 +18,9 @@ class Controller {
                     }
                 }
             })
+
+           
+
             const profile = await User.findOne({
                 where: {
                     id
@@ -27,7 +29,6 @@ class Controller {
             })
             res.render('Landing.ejs', { profile, content })
         } catch (error) {
-            console.log(error)
             res.send(error)
         }
     }
@@ -50,15 +51,12 @@ class Controller {
     static async handlerSettingById(req, res) {
         const { id } = req.params;
         const { firstName, lastName, gender, address, birthOfDate } = req.body;
-        let imgUrl = ''
         try {
-            
-            // Cari profil berdasarkan ID
+            let imgUrl = ''
+        
             const profile = await Profile.findByPk(id);
     
-            // Jika ada file yang diunggah
             if (req.file) {
-                // Fungsi untuk mengunggah file dari buffer ke Cloudinary
                 const uploadStream = (buffer) => {
                     return new Promise((resolve, reject) => {
                         const stream = cloudinary.uploader.upload_stream((error, result) => {
@@ -71,8 +69,6 @@ class Controller {
                         streamifier.createReadStream(buffer).pipe(stream);
                     });
                 };
-    
-                // Mengunggah file menggunakan fungsi uploadStream
                 imgUrl = await uploadStream(req.file.buffer);
                 profile.imageURL = imgUrl;
             }
@@ -88,8 +84,7 @@ class Controller {
 
             res.redirect(`/profile/setting/${id}`);
         } catch (error) {
-            console.error(error);
-            res.status(500).send('Terjadi kesalahan saat menyimpan profil');
+            res.send(error)
         }
     }
 
@@ -151,7 +146,12 @@ class Controller {
                 },
                 include: Profile
             })
-            res.render('Profile.ejs', { profile })
+
+            const tag = await Tag.findAll()
+            console.log(tag)
+
+            res.render('Profile.ejs', { profile, tag })
+
         } catch (error) {
             res.send(error)
         }
@@ -222,7 +222,23 @@ class Controller {
                 } 
             }
         } catch (error) {
-            // console.log(error)
+            res.send(error)
+        }
+    }
+
+    static async handlerAddPost(req, res){
+        const { id } = req.params
+        const {title, content, ProfileId, tag} = req.body
+        try {
+            const tag = await Tag.create({
+                tag
+            })
+            console.log(tag)
+            // await Post.create({
+            //     title, content, id, TagId
+            // })
+            res.send(tag)
+        } catch (error) {
             res.send(error)
         }
     }
