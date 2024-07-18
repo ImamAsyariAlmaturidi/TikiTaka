@@ -1,0 +1,39 @@
+[
+    {
+      "firstName": "John",
+      "lastName": "Doe",
+      "photo": "https://example.com/photos/john-doe.jpg",
+      "gender": "Male",
+      "address": "123 Main Street, Anytown, USA",
+      "birthOfDate": "1990-05-15",
+      "UserId": 1,
+      "Likes": 100,
+      "Following": 50,
+      "Followers": 200
+    },
+    {
+      "firstName": "Jane",
+      "lastName": "Smith",
+      "photo": "https://example.com/photos/jane-smith.jpg",
+      "gender": "Female",
+      "address": "456 Elm Avenue, Sometown, USA",
+      "birthOfDate": "1985-09-25",
+      "UserId": 2,
+      "Likes": 150,
+      "Following": 75,
+      "Followers": 180
+    },
+    {
+      "firstName": "Michael",
+      "lastName": "Johnson",
+      "photo": "https://example.com/photos/michael-johnson.jpg",
+      "gender": "Male",
+      "address": "789 Oak Road, Another City, USA",
+      "birthOfDate": "1988-12-10",
+      "UserId": 3,
+      "Likes": 120,
+      "Following": 60,
+      "Followers": 220
+    }
+  ]
+  

@@ -1,10 +1,33 @@
 [
     {
-        "title": "itu mah mending, lah umi selesai nifas thoriq uda haji",
-        "content": "thoriq haji semenjak 2 bulan"
+      "title": "Adventure in the Wild",
+      "content": "Exploring nature and wildlife.",
+      "imgUrl": "https://www.samplevideos.com/adventure-wild.mp4"
     },
     {
-        "title": "dicky vs hussein club music entertainment",
-        "content" : "dicky running in hacktiv8"  
-     }
-]
+      "title": "Cooking Tutorial: Pasta",
+      "content": "Learn how to cook delicious pasta at home.",
+      "imgUrl": "https://www.samplevideos.com/cooking-pasta.mp4"
+    },
+    {
+      "title": "Fitness Workout Routine",
+      "content": "Follow this workout routine to stay fit.",
+      "imgUrl": "https://www.samplevideos.com/fitness-workout.mp4"
+    },
+    {
+      "title": "Travel Vlog: Tokyo",
+      "content": "A travel journey through Tokyo's streets.",
+      "imgUrl": "https://www.samplevideos.com/travel-tokyo.mp4"
+    },
+    {
+      "title": "DIY Home Decor Ideas",
+      "content": "Creative DIY projects for home decoration.",
+      "imgUrl": "https://www.samplevideos.com/diy-home-decor.mp4"
+    },
+    {
+      "title": "Gardening Tips",
+      "content": "Tips and tricks for maintaining a beautiful garden.",
+      "imgUrl": "https://www.samplevideos.com/gardening-tips.mp4"
+    }
+  ]
+  

@@ -1,7 +1,7 @@
 const Controller = require('../controllers/controller')
 const express = require('express')
 const router = express.Router()
-
-router.get('/:id', Controller.landingPageRender)
+const { requireLogin } = require('../middlewares/sessionAuth');
+router.get('/:id', requireLogin, Controller.landingPageRender)
 
 module.exports = router

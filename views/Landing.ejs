@@ -19,18 +19,29 @@
     <%- include('_navbar') %>
     <%- include('_sidebar') %>
 
-    <div class=" relative">
-        <div class="items-center justify-center h-full overflow-y-auto">
+    <div class="relative">
+        <div class="grid grid-cols-3 gap-4">
             <% content.forEach(el => { %>
                 <div class="mb-4">
                     <video width="320" height="240" controls class="max-w-full max-h-full">
                         <source src="<%= el.imgUrl %>" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
+                    <div class="mt-2">
+                       
+                        <i class="fa-regular fa-heart ml-2"></i>
+                    </div>
+                    <div>
+                        <span class="text-black tracking-widest"><i>#<%= el.title %></i></span>
+                    </div>
+                    <div>
+                        <span class="text-black"><%= el.content %></span>
+                    </div>
                 </div>
             <% }) %>
         </div>
     </div>
+    
     
     
     </div>

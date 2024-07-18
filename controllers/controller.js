@@ -2,17 +2,43 @@ const { User, Profile, Post, ProfilePost, Tag} = require('../models/index')
 const bcrypt = require('bcryptjs')
 const cloudinary = require('../utils/cloudinary')
 const streamifier = require('streamifier')
+const { Op } = require('sequelize')
 class Controller {
-
     static async landingPageRender(req, res) {
         const { id } = req.params
+        const { title } = req.query
         try {
-            const content = await Post.findAll({
-                include: {
-                    model: ProfilePost,
+            let content;
+            if (title) {
+                content = await Post.findAll({
+                    where: {
+                        title: { [Op.iLike]: `%${title}%` }
+                    },
                     include: {
-                        model: Profile
+                        model: ProfilePost,
+                        include: {
+                            model: Profile
+                        }
                     }
+                });
+            } else {
+                content = await Post.findAll({
+                    include: {
+                        model: ProfilePost,
+                        include: {
+                            model: Profile
+                        }
+                    }
+                });
+            }
+
+            const contents = content.map(el => {
+                return el.ProfileId
+            })
+
+            const profileName = await Profile.findOne({
+                where: {
+                    id: contents
                 }
             })
 
@@ -22,8 +48,9 @@ class Controller {
                 },
                 include: Profile,
             })
-            res.render('Landing.ejs', { profile, content })
+            res.render('Landing.ejs', { profile, content, profileName })
         } catch (error) {
+            console.log(error)
             res.send(error)
         }
     }
@@ -184,38 +211,38 @@ class Controller {
         }
     }
 
-    static async handlerUserLogin(req, res){
-        const { email, password } = req.body
+    static async handlerUserLogin(req, res) {
+        const { email, password } = req.body;
+    
         try {
-            let status ;
-            const pwd = await User.findOne({
-                where: {
-                    email
-                },
-                attributes: ['password']
-            })
-
-            const profile = await User.findOne({
-                where: {
-                    email
-                },
+            const user = await User.findOne({
+                where: { email },
                 include: Profile
-            })
-
-            if(!pwd){
-                    const msg = 'Username or Password incorect'
-                    res.redirect(`/users/login?msg=${msg}`)
+            });
+    
+            if (!user) {
+                const msg = 'Username or Password incorrect';
+                return res.redirect(`/users/login?msg=${msg}`);
+            }
+    
+            const isPasswordValid = await bcrypt.compare(password, user.password);
+    
+            if (isPasswordValid) {
+                req.session.user = {
+                    id: user.id,
+                    email: user.email,
+                    profile: user.Profile
+                };
+                res.redirect(`/landing/${user.id}`);
             } else {
-                status = bcrypt.compareSync(password, pwd.dataValues.password)
-                if(status === true) {
-                    res.redirect(`/landing/${profile.id}`)
-                } 
+                const msg = 'Username or Password incorrect';
+                res.redirect(`/users/login?msg=${msg}`);
             }
         } catch (error) {
-            res.send(error)
+            console.error('Error in handlerUserLogin:', error);
+            res.status(500).send('Internal Server Error');
         }
     }
-    
     static async handlerAddPost(req, res) {
         const { id } = req.params;
         const { title, content, tag } = req.body;
@@ -258,6 +285,19 @@ class Controller {
             })
 
             res.redirect(`/landing/${id}`);
+        } catch (error) {
+            res.send(error)
+        }
+    }
+
+    static async handlerLogout(req, res){
+        try {
+            req.session.destroy(err => {
+                if (err) {
+                  return res.status(500).send('Gagal logout');
+                }
+              res.redirect('/users/login')
+              });
         } catch (error) {
             res.send(error)
         }
