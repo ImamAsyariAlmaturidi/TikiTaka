@@ -231,18 +231,26 @@ class Controller {
                 req.session.user = {
                     id: user.id,
                     email: user.email,
+                    role: user.Role,
                     profile: user.Profile
                 };
-                res.redirect(`/landing/${user.id}`);
+    
+                if (user.Role === 'Admin') {
+                    res.redirect('/dashboard');
+                } else {
+                    res.redirect(`/landing/${user.id}`);
+                }
             } else {
                 const msg = 'Username or Password incorrect';
                 res.redirect(`/users/login?msg=${msg}`);
             }
         } catch (error) {
             console.error('Error in handlerUserLogin:', error);
-            res.status(500).send('Internal Server Error');
+            res.send(error);
         }
     }
+    
+
     static async handlerAddPost(req, res) {
         const { id } = req.params;
         const { title, content, tag } = req.body;
@@ -302,7 +310,20 @@ class Controller {
             res.send(error)
         }
     }
-    
+
+    static async renderDashboard(req, res){
+        try {
+            const users = await User.findAll({
+                where: {
+                    Role: 'User'
+                },
+                include: Profile,
+            })
+            res.render('Dashboard.ejs', { users })
+        } catch (error) {
+            res.send(error)
+        }
+    }
 }
 
 module.exports = Controller

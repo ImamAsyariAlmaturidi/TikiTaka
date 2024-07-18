@@ -1,0 +1,41 @@
+<!-- AdminDashboard.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <!-- Include tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.15/dist/tailwind.min.css" rel="stylesheet">
+    <!-- Tambahkan custom styling di sini jika diperlukan -->
+</head>
+<body class="bg-gray-100">
+    <div class="container mx-auto px-4 py-8">
+        <h1 class="text-3xl font-bold mb-4">Welcome to Admin Dashboard</h1>
+        
+        <div class="bg-white shadow-md rounded my-6">
+            <h2 class="text-xl font-bold px-6 py-4 bg-gray-200">All Users</h2>
+            <table class="min-w-full leading-normal">
+                <thead>
+                    <tr>
+                        <th class="px-6 py-3 border-b-2 border-gray-300 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider">ID</th>
+                        <th class="px-6 py-3 border-b-2 border-gray-300 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider">Username</th>
+                        <th class="px-6 py-3 border-b-2 border-gray-300 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider">Email</th>
+                        <!-- Tambahkan kolom lain sesuai kebutuhan -->
+                    </tr>
+                </thead>
+                <tbody>
+                    <% users.forEach(user => { %>
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap border-b border-gray-300 text-sm"><%= user.id %></td>
+                            <td class="px-6 py-4 whitespace-nowrap border-b border-gray-300 text-sm"><%= user.username %></td>
+                            <td class="px-6 py-4 whitespace-nowrap border-b border-gray-300 text-sm"><%= user.email %></td>
+                            <!-- Tambahkan kolom lain sesuai kebutuhan -->
+                        </tr>
+                    <% }); %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
