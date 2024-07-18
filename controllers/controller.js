@@ -31,6 +31,7 @@ class Controller {
                 },
                 include: Profile
             })
+            
             res.render('FormEditProfile.ejs', { profile })
         } catch (error) {
             res.send(error)

@@ -14,6 +14,11 @@ module.exports = (sequelize, DataTypes) => {
       Profile.belongsTo(models.User)
       Profile.hasMany(models.ProfilePost)
     }
+
+   static getBirthDayISO(birth) {
+    return birth.toISOString().split('T')[0];
+   }
+    
   }
   Profile.init({
     firstName: DataTypes.STRING,
