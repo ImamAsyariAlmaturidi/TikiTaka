@@ -278,6 +278,7 @@ class Controller {
                 videoUrl = await uploadVideo(req.file.buffer);
             }
 
+            console.log(videoUrl)
            const dataPost = await Post.create({
                 title,
                 content,
@@ -306,6 +307,17 @@ class Controller {
                 }
               res.redirect('/users/login')
               });
+        } catch (error) {
+            res.send(error)
+        }
+    }
+
+    static async addLikes(req, res) {
+        const { postId } = req.body
+        try {
+            const post = Post.findAll()
+            console.log(post)
+            res.send(post)
         } catch (error) {
             res.send(error)
         }

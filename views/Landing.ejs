@@ -18,17 +18,18 @@
 <body class="bg-gray-300">
     <%- include('_navbar') %>
     <%- include('_sidebar') %>
-
     <div class="relative">
         <div class="grid grid-cols-3 gap-4">
             <% content.forEach(el => { %>
                 <div class="mb-4">
-                    <video width="320" height="240" controls class="max-w-full max-h-full">
-                        <source src="<%= el.imgUrl %>" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
+                    <div style="width: 320px; height: 240px; position: relative; overflow: hidden;">
+                        <video width="320" height="240" controls style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+                            <source src="<%= el.imgUrl %>" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
                     <div class="mt-2">
-                       
+                        <!-- Konten tambahan sesuai kebutuhan -->
                         <i class="fa-regular fa-heart ml-2"></i>
                     </div>
                     <div>
@@ -42,8 +43,5 @@
         </div>
     </div>
     
-    
-    
-    </div>
 </body>
 </html>
