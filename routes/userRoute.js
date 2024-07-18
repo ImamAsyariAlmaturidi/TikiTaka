@@ -8,4 +8,5 @@ router.post('/login', Controller.handlerUserLogin)
 router.post('/register', Controller.handlerUserRegister)
 router.get('/register', Controller.userRegister)
 router.get('/logout/:id', Controller.handlerLogout)
+router.get('/delete/:id', Controller.deleteUser)
 module.exports = router

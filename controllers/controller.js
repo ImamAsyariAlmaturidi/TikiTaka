@@ -311,6 +311,20 @@ class Controller {
         }
     }
 
+    static async deleteUser(req, res){
+        const { id } = req.params
+        try {
+            await User.destroy({
+                where: {
+                    id
+                }
+            })
+            res.redirect('/dashboard')
+        } catch (error) {
+            res.send(error)
+        }
+    }
+
     static async renderDashboard(req, res){
         try {
             const users = await User.findAll({
