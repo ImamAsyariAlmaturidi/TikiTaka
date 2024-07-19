@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.15/dist/tailwind.min.css" rel="stylesheet">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
 </head>
 <body class="bg-gray-100">
     <div class="container mx-auto px-4 py-8">
@@ -29,7 +29,11 @@
                             <td class="px-6 py-4 whitespace-nowrap border-b border-gray-300 text-sm"><%= user.id %></td>
                             <td class="px-6 py-4 whitespace-nowrap border-b border-gray-300 text-sm"><%= user.username %></td>
                             <td class="px-6 py-4 whitespace-nowrap border-b border-gray-300 text-sm"><%= user.email %></td>
-                            <td class="px-6 whitespace-nowrap bg-red-300 border-b border border-gray-300 text-sm"><a href="/users/delete/<%= user.id %>"><button>delete</button></a></td>
+                            <td class="px-6 whitespace-nowrap bg-red-300 border-b border border-gray-300 text-sm"><a href="/users/delete/<%= user.id %>">
+                                <button>
+                                    <i class="fa-solid fa-trash"></i>
+                                </button></a>
+                            </td>
                         </tr>
                     <% }); %>
                 </tbody>
